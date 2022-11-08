@@ -1,53 +1,56 @@
-.screen {grid-area: screen-display; }
+/*.screen {grid-area: screen-display; }*/
 .clear {grid-area: clear; }
 .plus-minus {grid-area: plus-minus; } 
 .percent {grid-area: percent; }
 .divide {grid-area: divide; }
-.seven {grid-area: seven; }
-.eight {grid-area: eight; }
-.nine {grid-area: nine; }
+#seven {grid-area: seven; }
+#eight {grid-area: eight; }
+#nine {grid-area: nine; }
 .multiply {grid-area: multiply-button; }
-.four {grid-area: four; }
-.five {grid-area: five; }
-.six {grid-area: six; }
+#four {grid-area: four; }
+#five {grid-area: five; }
+#six {grid-area: six; }
 .subtract {grid-area: subtract-button; }
-.one {grid-area: one; }
-.two {grid-area: two; }
-.three {grid-area: three; }
+#one {grid-area: one; }
+#two {grid-area: two; }
+#three {grid-area: three; }
 .add {grid-area: add-button; }
-.zero {grid-area: zero-button; }
+#zero {grid-area: zero-button; }
 .dot {grid-area: dot-button; }
 .equal {grid-area: equal; }
 
 .calculator {
     width: 500px;
-    height: 600px;
-    display: grid;
-    grid-template-areas:
-    'screen-display screen-display screen-display screen-display'
-    'clear plus-minus percent divide'
-    'seven eight nine multiply-button'
-    'four five six subtract-button'
-    'one two three add-button'
-    'zero-button zero-button dot-button equal';
+    height: 550px;
+    display: flex;
+    flex-direction: column;
     background-color: #2196F3;
     gap: 5px;
     padding: 10px;
 }
 
-/*.calculator > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px 0;
-  }*/
+.buttons {
+    display: grid;
+    grid-template-areas:
+    'clear plus-minus percent divide'
+    'seven eight nine multiply-button'
+    'four five six subtract-button'
+    'one two three add-button'
+    'zero-button zero-button dot-button equal';
+    gap: 5px;
+}
 
   .screen {
-    height: 100%;
-    width: 100%;
+    height: 30%;
     background-color: white;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
+    border-color: black;
+    border-width: 2px;
+    border-style: inset;
+    font-size: 30px;
+    padding: 5%;
   }
 
 
@@ -58,10 +61,16 @@
 
   button {
     width: 100%;
-    height: 100%;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
     font-size: 30px;
+    flex: 1;
+    padding: 10px;
+  }
+
+  .activeCalc {
+    background-color: aqua;
   }

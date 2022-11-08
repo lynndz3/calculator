@@ -6,68 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="calculator.js" defer></script>
 </head>
+<body>
     <h1>Every new programmer has to build a calculator</h1>
-
     <div class="calculator">
-        <div class="screen">Screen</div>
+        <div class="screen"></div>
+        <div class="buttons">
         <div class="clear">
             <button>Clr</button></div>
         <div class="plus-minus">
             <button>+/-</button></div>  
         <div class="percent">
             <button>%</button></div>
-        <div class="divide">
+        <div class="calc" id="divide">
             <button>/</button></div>
-        <div class="seven number">
-            <button>7</button></div>
-        <div class="eight number">
-            <button>9</button></div>
-        <div class="nine number"> 
-            <button>9</button></div>
-        <div class="multiply">
+        <div>
+            <button class="number" id="seven">7</button></div>
+        <div>
+            <button class="number" id="eight">8</button></div>
+        <div> 
+            <button id="nine" class="number">9</button></div>
+        <div class="calc" id="multiply">
             <button>x</button></div>
-        <div class="four number">
-            <button>4</button></div>
-        <div class="five number">
-            <button>5</button></div>
-        <div class="six number">
-            <button>6</button></div>
-        <div class="subtract">
+        <div>
+            <button id="four" class="number">4</button></div>
+        <div>
+            <button class="number" id="five">5</button></div>
+        <div>
+            <button class="number" id="six">6</button></div>
+        <div class="calc" id="subtract">
             <button>-</button></div>
-        <div class="one number">
-            <button>1</button></div>
-        <div class="two number">
-            <button>2</button></div>
-        <div class="three number">
-            <button>3</button></div>
-        <div class="add">
+        <div>
+            <button class="number" id="one">1</button></div>
+        <div>
+            <button class="number" id="two">2</button></div>
+        <div>
+            <button class="number" id="three">3</button></div>
+        <div class="calc" id="add">
             <button>+</button></div>
-        <div class="zero">  
-            <button>0</button></div>    
+        <div id="zero">  
+            <button class="number">0</button></div>    
         <div class="dot">
             <button>.</button></div>
         <div class="equal">
             <button>=</button></div>
+        </div>
     </div>
-<body>
     <script>
-    const add = function(a, b) {
-        return a + b;
-    };
-    
-    const subtract = function(a, b) {
-        return a - b;
-    };
-    
-    const divide = function(a, b) {
-        return a / b;
-    };
-    
-    const multiply = function(a, b) {
-        return a * b;
-    };
-  
+
+
+
     </script>
     
 </body>
