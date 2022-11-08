@@ -26,21 +26,26 @@ numbers.forEach(elem => {
         //if this is the first number in the equation
         //add numbers into strings to create "firstNum"
         //if there was no previous answer and no active calc, user creates FirstNumber
-        activeNum = '';
-        if (elem.textContent == '.' && activeNum.includes('.')) return;
-        if (checkIfActive() == false) {
+        //if there is already a decimal, don't let user add another one to the same number
+        if (elem.textContent == '.' && (answer == activeNum || (typeof activeNum == 'number' && activeNum % 1 != 0) || 
+            (typeof activeNum == 'string' && activeNum.includes('.')))) 
+                return;
+        //if the previous answer is displaying on the screen, and user clicks a number again (with no math sign first), start new number
+        if (answer == activeNum && checkIfActive() == false) {
             screen.textContent = '';
+            answer = undefined
+            firstNumber = elem.textContent;
+            activeNum = firstNumber;
+        }
+        else if (answer == undefined && checkIfActive() == false) {
             answer = undefined;
-            console.log(elem.textContent);
             firstNumber += elem.textContent;
             activeNum += elem.textContent;
-            screen.textContent = activeNum;
         }
         //if there was no previous answer, but there is an active calc, user creates second number
         else if (answer == undefined && checkIfActive() != false) {
             secondNumber += elem.textContent;
             activeNum += elem.textContent;
-            screen.textContent = activeNum;
         }
         //if there was a previous answer, and no calculation, start afresh with firstNumber 
         //if number button is clicked and a calc was set before that, assume it's the second number
@@ -48,8 +53,8 @@ numbers.forEach(elem => {
             firstNumber = answer;
             secondNumber += elem.textContent;
             activeNum = elem.textContent;
-            screen.textContent = activeNum;
         }
+        screen.textContent = activeNum;
     })
 });
 
