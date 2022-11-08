@@ -19,12 +19,18 @@
 .dot {grid-area: dot-button; }
 .equal {grid-area: equal; }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .calculator {
     width: 500px;
     height: 550px;
     display: flex;
     flex-direction: column;
-    background-color: #2196F3;
+    background-color: #639fcf;
     gap: 5px;
     padding: 10px;
 }
@@ -46,7 +52,7 @@
     display: flex;
     justify-content: right;
     align-items: center;
-    border-color: black;
+    border-color: rgb(32, 30, 50);
     border-width: 2px;
     border-style: inset;
     font-size: 30px;
@@ -55,7 +61,7 @@
 
 
   .calculator .number {
-    background-color: rgb(200, 121, 121);
+    background-color: rgb(47, 47, 126);
     color: white; 
   }
 
@@ -71,6 +77,18 @@
     padding: 10px;
   }
 
-  .activeCalc {
-    background-color: aqua;
+  body .activeCalc {
+    background-color: rgb(169, 12, 62);
+  }
+
+  .calc {
+    background-color: #f8ea6e;
+  }
+
+  .equal {
+    background-color: #f8ea6e;
+  }
+
+  .clear {
+    font-size: 25px;
   }
