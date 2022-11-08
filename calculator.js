@@ -26,6 +26,8 @@ numbers.forEach(elem => {
         //if this is the first number in the equation
         //add numbers into strings to create "firstNum"
         //if there was no previous answer and no active calc, user creates FirstNumber
+        activeNum = '';
+        if (elem.textContent == '.' && activeNum.includes('.')) return;
         if (checkIfActive() == false) {
             screen.textContent = '';
             answer = undefined;
@@ -58,23 +60,45 @@ function replaceText(textToRemove, textToReplace) {
 };
 
 plusMinus.addEventListener("click", function(e) {
-    if (activeNum != '') {
+    if (secondNumber == activeNum) {
         secondNumber = Number(secondNumber);
         secondNumber = secondNumber - (secondNumber * 2);
-        console.log(secondNumber);
-        screen.textContent = secondNumber;
+        activeNum = secondNumber;
+        screen.textContent = activeNum;
     }
-    if (firstNumber != '') {
+    if (firstNumber == activeNum) {
         firstNumber = Number(firstNumber);
         firstNumber = firstNumber - (firstNumber * 2);
-        screen.textContent = firstNumber;
-        console.log(firstNumber);
+        activeNum = firstNumber;
+        screen.textContent = activeNum;
     }
+    if (answer == activeNum) {
+        answer = Number(answer);
+        answer = answer - (answer * 2);
+        activeNum = answer;
+        screen.textContent = activeNum;
+    }
+    else return;
 });
-/*
-percent.addEventListener("click", function(e) {
 
-})*/
+percent.addEventListener("click", function(e) {
+    if (secondNumber == activeNum) {
+        secondNumber = Number(secondNumber/100);
+        activeNum = secondNumber;  
+        screen.textContent = activeNum;
+    }
+    if (firstNumber == activeNum) {
+        firstNumber = Number(firstNumber/100);
+        activeNum = firstNumber;  
+        screen.textContent = activeNum;
+    }
+    if (answer == activeNum) {
+        answer = Number(answer/100);
+        activeNum = answer;  
+        screen.textContent = activeNum;
+    }
+    else return;
+});
 
 
 function removeActive() {
@@ -89,6 +113,8 @@ function removeActive() {
 calcs.forEach(elem => {
     elem.addEventListener("click", function(e) {
         firstNumber = Number(firstNumber);
+        console.log(typeof firstNumber);
+        console.log("first number is =" + firstNumber)
         screen.textContent = '';
         activeNum = '';
         if (firstNumber == '' && answer == undefined) {
@@ -129,17 +155,19 @@ const multiply = function(a, b) {
 equals.addEventListener("click", function() {
     answer = 0;
     screen.textContent = '';
+    console.log("second number is= " + secondNumber);
+    secondNumber = Number(secondNumber);
     if(checkIfActive() == 'add') {
-        answer = add(parseInt(firstNumber), parseInt(secondNumber));
+        answer = add(firstNumber, secondNumber);
     }
     if(checkIfActive() == 'subtract') {
-        answer = subtract(parseInt(firstNumber), parseInt(secondNumber));
+        answer = subtract(firstNumber, secondNumber);
     }
     if(checkIfActive() == 'divide') {
-        answer = divide(parseInt(firstNumber), parseInt(secondNumber));
+        answer = divide(firstNumber, secondNumber);
     }
     if(checkIfActive() == 'multiply') {
-        answer = multiply(parseInt(firstNumber), parseInt(secondNumber));
+        answer = multiply(firstNumber, secondNumber);
     }
     activeNum = answer;
     screen.textContent = activeNum;
