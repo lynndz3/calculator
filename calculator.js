@@ -19,44 +19,86 @@ function checkIfActive() {
         }
     }
     return false
+};
+
+
+window.addEventListener("keydown", function(e) {
+    let numberSelected = '';
+    for (let i = 0; i < numbers.length; i++) {
+        if (e.key == numbers[i].textContent) {
+            numberSelected = e.key;
+        }
+    }
+    if (numberSelected == '.' && (answer == activeNum || (typeof activeNum == 'number' && activeNum % 1 != 0) || 
+    (typeof activeNum == 'string' && activeNum.includes('.')))) 
+        return;
+//if the previous answer is displaying on the screen, and user clicks a number again (with no math sign first), start new number
+if (answer == activeNum && checkIfActive() == false) {
+    screen.textContent = '';
+    answer = undefined
+    firstNumber = numberSelected;
+    activeNum = firstNumber;
 }
+else if (answer == undefined && checkIfActive() == false) {
+    answer = undefined;
+    firstNumber += numberSelected;
+    activeNum += numberSelected;
+}
+//if there was no previous answer, but there is an active calc, user creates second number
+else if (answer == undefined && checkIfActive() != false) {
+    secondNumber += numberSelected;
+    activeNum += numberSelected;
+}
+//if there was a previous answer, and no calculation, start afresh with firstNumber 
+//if number button is clicked and a calc was set before that, assume it's the second number
+else if (answer != undefined && checkIfActive() != false) {
+    firstNumber = answer;
+    secondNumber += numberSelected;
+    activeNum = numberSelected;
+}
+screen.textContent = activeNum;
+});
 
 numbers.forEach(elem => {
-    elem.addEventListener('click', function() {
+    elem.addEventListener('click', displayNum);
+    });
+
+
+function displayNum(e) {
+        let numberSelected = e.target.textContent;
         //if this is the first number in the equation
         //add numbers into strings to create "firstNum"
         //if there was no previous answer and no active calc, user creates FirstNumber
         //if there is already a decimal, don't let user add another one to the same number
-        if (elem.textContent == '.' && (answer == activeNum || (typeof activeNum == 'number' && activeNum % 1 != 0) || 
+        if (numberSelected == '.' && (answer == activeNum || (typeof activeNum == 'number' && activeNum % 1 != 0) || 
             (typeof activeNum == 'string' && activeNum.includes('.')))) 
                 return;
         //if the previous answer is displaying on the screen, and user clicks a number again (with no math sign first), start new number
         if (answer == activeNum && checkIfActive() == false) {
             screen.textContent = '';
             answer = undefined
-            firstNumber = elem.textContent;
+            firstNumber = numberSelected;
             activeNum = firstNumber;
         }
         else if (answer == undefined && checkIfActive() == false) {
             answer = undefined;
-            firstNumber += elem.textContent;
-            activeNum += elem.textContent;
+            firstNumber += numberSelected;
+            activeNum += numberSelected;
         }
         //if there was no previous answer, but there is an active calc, user creates second number
         else if (answer == undefined && checkIfActive() != false) {
-            secondNumber += elem.textContent;
-            activeNum += elem.textContent;
+            secondNumber += numberSelected;
+            activeNum += numberSelected;
         }
         //if there was a previous answer, and no calculation, start afresh with firstNumber 
         //if number button is clicked and a calc was set before that, assume it's the second number
         else if (answer != undefined && checkIfActive() != false) {
             firstNumber = answer;
-            secondNumber += elem.textContent;
-            activeNum = elem.textContent;
+            secondNumber += numberSelected;
+            activeNum = numberSelected;
         }
         screen.textContent = activeNum;
-    })
-});
+    };
 
 function replaceText(textToRemove, textToReplace) {
     let originalText = screen.textContent;
