@@ -176,6 +176,9 @@ equals.addEventListener("click", function() {
     }
     activeNum = answer;
     screen.textContent = activeNum;
+    if (screen.textContent == "Infinity") {
+        screen.textContent = "HAHAH :)";
+    }
     firstNumber = '';
     secondNumber = '';
     removeActive();
