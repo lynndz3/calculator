@@ -27,6 +27,7 @@ body {
     background-color: rgb(239, 229, 229);
     min-height: 100vh;
     flex-grow: 1;
+    margin-bottom: 0;
 }
 
 h1 {
@@ -105,12 +106,14 @@ h1 {
 
   footer {
     text-align: center;
-    padding: 3px;
-    background-color: rgb(44, 58, 120);
-    color: rgb(253, 253, 253);
+    background-color: #639fcf;
+    color: white;
     margin-top: auto;
-    font-style: italic;
     font-weight: lighter;
     padding: 5px;
     width: 100%;
+  }
+
+  #source-code-link {
+    color: white;
   }
